@@ -1,4 +1,5 @@
 # Project Proposal
+Project Members: Jared Chou, Spencer Yeh, Bowen Jiang
 
 Idea 1: App to find where your friends are studying on campus
 Potential APIs: Gps/Google maps, Instagram messaging

@@ -8,7 +8,7 @@ Idea 2: Outdoor trip planner
 Potential APIs: Weather API, trail conditions
 
 
-Idea: An app to see where your friends are studying on campus (GPS coords/api, Google Maps, Instagram messaging)
+Idea: An app to see where your friends are studying on campus (GPS coords/api, Google Maps, Instagram messaging) \[approved\]
 We would be able to look at the location of our friends on where they study
 We will be using instagram messaging to communicate with friends
 - Database: 

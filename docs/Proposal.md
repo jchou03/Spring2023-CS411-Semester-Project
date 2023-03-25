@@ -34,3 +34,6 @@ Idea: Outdoor trip planner (weather api, trail conditions) An application that h
 - Decoupled architecture: 
     - Front End: website/mobile app to collect details about trip requirements 
     - Back End: connect with APIs and pull trip recommendations for user trips
+
+
+[Trello](https://trello.com/invite/b/GtO5fYu9/ATTIa2ff4c0480e0d666d23beda11f649b63E1CC0D13/project)

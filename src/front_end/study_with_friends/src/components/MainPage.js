@@ -1,5 +1,5 @@
 import React from "react";
-import '../App.css';
+import '../style/App.css';
 import TopBar from './TopBar'
 import StudySession from './StudySession'
 
@@ -11,11 +11,14 @@ function MainPage(props){
 
             <div id="main-row">
                 <div class="column" id="study-sessions">
-                    <StudySession name="Jared" location="Laz's butt" time="1:40"/>
-                    <StudySession name="Ivanna" location="Laz's butt"/>
-                    <StudySession name="Laz" location="Will's butt"/>
+                    <StudySession name="Jared" location="Questrom" time="1:40"/>
+                    <StudySession name="Ivanna" location="GSU"/>
+                    <StudySession name="Laz" location="Warren Towers"/>
                 </div>
                 <div class="column">
+                    <div id="study-button">
+                        <p>Study Now</p>
+                    </div>
                     <p>google maps</p>
                 </div>
             </div>

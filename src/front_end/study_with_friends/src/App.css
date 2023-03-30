@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+/* 
+
+color pallete to use (in hex)
+
+https://coolors.co/palette/edede9-d6ccc2-f5ebe0-e3d5ca-d5bdaf
+Pastel color palette
+
+*/
+
+h1{
+  margin: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p{
+  margin: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+hr{
+  margin-bottom: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#topbar{
   display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+#mainPage{
+  display:flex;
+  height: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  background-color: #EDEDE9;
 }
 
-.App-link {
-  color: #61dafb;
+body > #root > div {
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+hr.solid-divider{
+  border-top: 5px solid black;
+  width: 95%;
+  border-radius: 5px;
+}
+
+#main-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 100%;
+  margin: 15px;
+  /* display: contents; */
+}
+
+div.column{
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+}
+
+#main-row div.column{
+  flex: 1 1 auto;
+}
+
+#study-sessions{
+  background-color: #E3D5CA;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.study-session{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #F5EBE0;
+  margin:5px;
+  padding: 20px;
 }

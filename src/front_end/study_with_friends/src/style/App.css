@@ -19,11 +19,7 @@ hr{
   margin-bottom: 0px;
 }
 
-#topbar{
-  display: flex;
-  padding: 10px;
-  justify-content: space-between;
-}
+
 
 #mainPage{
   display:flex;

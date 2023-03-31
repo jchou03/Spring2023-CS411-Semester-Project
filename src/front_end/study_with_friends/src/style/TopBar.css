@@ -2,10 +2,10 @@
     display: flex;
     padding: 10px;
     justify-content: space-between;
-    align-items: baseline;
 }
 
 .right-side{
     display:flex;
-    align-items: baseline
+    align-items: baseline;
+    column-gap: 10px;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import '../style/App.css';
-
+import '../style/TopBar.css'
+import Button from 'react-bootstrap/Button'
 
 function TopBar (props) {
     var username = "YDD Laz"
@@ -9,7 +10,7 @@ function TopBar (props) {
             <h1>Study Finder</h1>
             <div>
                 {/* can add a profile picture in top right later */}
-                <p>Hello {username}</p>
+                {username === "" ? (<Button variant="primary">Sign In</Button>) : (<div class="right-side"><p>Hello {username}</p> <Button variant="Primary">Sign Out</Button></div>)}
             </div>
         </div>
     )

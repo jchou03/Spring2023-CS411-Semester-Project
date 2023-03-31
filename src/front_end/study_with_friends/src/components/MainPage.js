@@ -5,6 +5,7 @@ import TopBar from './TopBar'
 import StudySession from './StudySession'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
 
 
 // this array of study sessions will
@@ -32,7 +33,17 @@ function MainPage(props){
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
+    
+    // hooks to handle the form inputs for starting a study session
+    const [studyLocation, setStudyLocation] = useState("")
+    const [studyEndTime, setStudyEndTime] = useState("")
 
+    // function to handle the submit of the modal form
+    const handleSubmit = () => {
+        console.log("study location: " + studyLocation)
+        console.log("study until time: " + studyEndTime)
+        handleClose()
+    }
 
     return(
         <div id="mainPage">
@@ -63,12 +74,24 @@ function MainPage(props){
                         <Modal.Header closeButton>
                             <Modal.Title>Start a Study Session</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Let's start studying! </Modal.Body>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group >
+                                    <Form.Label>Where do you want to study?</Form.Label>
+                                    <Form.Control placeholder="Boston University" onChange={(event) => {setStudyLocation(event.target.value)}}/>
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Label>When do you want to finish studying?</Form.Label>
+                                    <Form.Control type="time" onChange={(event) => setStudyEndTime(event.target.value)}></Form.Control>
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
                                 Cancel
                             </Button>
-                            <Button variant="primary" onClick={handleClose}>
+                            <Button variant="primary" onClick={handleSubmit}>
                                 Start Study Session!
                             </Button>
                         </Modal.Footer>

@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TopBar (props) {
-    const [username, setUsername] = useState("YDD Laz")
+    const [username, setUsername] = useState("Laz")
 
     const signOut = () => {
         setUsername("")
     }
 
     const signIn = () => {
-        setUsername("YDD Laz")
+        setUsername("Laz")
     }
 
     return (

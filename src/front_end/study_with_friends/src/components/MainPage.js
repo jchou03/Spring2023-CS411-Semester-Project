@@ -29,6 +29,9 @@ var studySessions = [
 
 
 function MainPage(props){
+    // hook to determine the study status of the user
+    const [studying, setStudying] = useState(false);
+
     // hooks to keep track of the modal display status
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
@@ -42,14 +45,20 @@ function MainPage(props){
     const handleSubmit = () => {
         console.log("study location: " + studyLocation)
         console.log("study until time: " + studyEndTime)
+        setStudying(true)
+        setStudyLocation("")
+        setStudyEndTime("")
         handleClose()
     }
 
     return(
         <div id="mainPage">
             <TopBar />
+            
             <hr class="solid-divider" />
 
+            {/* display a bar to show study progress (when studying) */}
+            {studying ? (<h1>Studying</h1>) : <></>}
 
             <div id="main-row">
                 <div class="column" id="study-sessions">

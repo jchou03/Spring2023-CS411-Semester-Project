@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/App.css"
+import "../style/StudySession.css"
 
 function StudySession(props){
     return(

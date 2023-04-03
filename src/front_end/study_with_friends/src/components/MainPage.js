@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 import TopBar from './TopBar'
 import StudySession from './StudySession'
+import Studying from "./Studying"
+
+// react boostrap imports
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -46,8 +49,6 @@ function MainPage(props){
         console.log("study location: " + studyLocation)
         console.log("study until time: " + studyEndTime)
         setStudying(true)
-        setStudyLocation("")
-        setStudyEndTime("")
         handleClose()
     }
 
@@ -58,7 +59,7 @@ function MainPage(props){
             <hr class="solid-divider" />
 
             {/* display a bar to show study progress (when studying) */}
-            {studying ? (<h1>Studying</h1>) : <></>}
+            {studying ? (<Studying location={studyLocation} time={studyEndTime}/>) : <></>}
 
             <div id="main-row">
                 <div class="column" id="study-sessions">

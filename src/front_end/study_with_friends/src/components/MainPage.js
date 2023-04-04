@@ -3,8 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 import TopBar from './TopBar'
 import StudySession from './StudySession'
+import Studying from "./Studying"
+
+// react boostrap imports
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
 
 
 // this array of study sessions will
@@ -28,17 +32,34 @@ var studySessions = [
 
 
 function MainPage(props){
+    // hook to determine the study status of the user
+    const [studying, setStudying] = useState(false);
+
     // hooks to keep track of the modal display status
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
+    
+    // hooks to handle the form inputs for starting a study session
+    const [studyLocation, setStudyLocation] = useState("")
+    const [studyEndTime, setStudyEndTime] = useState("")
 
+    // function to handle the submit of the modal form
+    const handleSubmit = () => {
+        console.log("study location: " + studyLocation)
+        console.log("study until time: " + studyEndTime)
+        setStudying(true)
+        handleClose()
+    }
 
     return(
         <div id="mainPage">
             <TopBar />
+            
             <hr class="solid-divider" />
 
+            {/* display a bar to show study progress (when studying) */}
+            {studying ? (<Studying location={studyLocation} time={studyEndTime}/>) : <></>}
 
             <div id="main-row">
                 <div class="column" id="study-sessions">
@@ -63,12 +84,24 @@ function MainPage(props){
                         <Modal.Header closeButton>
                             <Modal.Title>Start a Study Session</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Let's start studying! </Modal.Body>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group >
+                                    <Form.Label>Where do you want to study?</Form.Label>
+                                    <Form.Control placeholder="Boston University" onChange={(event) => {setStudyLocation(event.target.value)}}/>
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Label>When do you want to finish studying?</Form.Label>
+                                    <Form.Control type="time" onChange={(event) => setStudyEndTime(event.target.value)}></Form.Control>
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
                                 Cancel
                             </Button>
-                            <Button variant="primary" onClick={handleClose}>
+                            <Button variant="primary" onClick={handleSubmit}>
                                 Start Study Session!
                             </Button>
                         </Modal.Footer>

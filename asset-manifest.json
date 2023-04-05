@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Spring2023-CS411-Semester-Project/static/css/main.859fd5d1.css",
+    "main.js": "/Spring2023-CS411-Semester-Project/static/js/main.0167600a.js",
+    "static/js/787.be0a0196.chunk.js": "/Spring2023-CS411-Semester-Project/static/js/787.be0a0196.chunk.js",
+    "index.html": "/Spring2023-CS411-Semester-Project/index.html",
+    "main.859fd5d1.css.map": "/Spring2023-CS411-Semester-Project/static/css/main.859fd5d1.css.map",
+    "main.0167600a.js.map": "/Spring2023-CS411-Semester-Project/static/js/main.0167600a.js.map",
+    "787.be0a0196.chunk.js.map": "/Spring2023-CS411-Semester-Project/static/js/787.be0a0196.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.859fd5d1.css",
+    "static/js/main.0167600a.js"
+  ]
+}

@@ -34,9 +34,14 @@ var studySessions = [
 function MainPage(props){
     // hook to determine the study status of the user
     const [studying, setStudying] = useState(false);
+    // function to stop the study session
+    const stopStudying = () => {
+        // calculate study time here (later)
+        setStudying(false);
+    }
 
     // hooks to keep track of the modal display status
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
     
@@ -59,7 +64,7 @@ function MainPage(props){
             <hr class="solid-divider" />
 
             {/* display a bar to show study progress (when studying) */}
-            {studying ? (<Studying location={studyLocation} time={studyEndTime}/>) : <></>}
+            {studying ? (<Studying location={studyLocation} time={studyEndTime} onClick={stopStudying}/>) : <></>}
 
             <div id="main-row">
                 <div class="column" id="study-sessions">
@@ -71,7 +76,6 @@ function MainPage(props){
                     <Button id="study-button" onClick={handleOpen}>
                         Study Now
                     </Button>
-
 
                     {/* Modal to pop up when you click to start a study session */}
                     <Modal

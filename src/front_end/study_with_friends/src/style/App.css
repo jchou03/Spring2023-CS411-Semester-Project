@@ -19,13 +19,11 @@ hr{
   margin-bottom: 0px;
 }
 
-
-
 #mainPage{
   display:flex;
   height: 100%;
   flex-direction: column;
-  text-align: center;
+  /* text-align: center; */
   background-color: #EDEDE9;
 }
 

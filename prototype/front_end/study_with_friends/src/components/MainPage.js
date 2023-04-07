@@ -50,6 +50,9 @@ function MainPage(props){
         setStudying(false);
     }
 
+    // hook to keep track of username
+    const [username, setUsername] = useState("")
+
     // hooks to keep track of the modal display status
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -72,7 +75,7 @@ function MainPage(props){
             <TopBar setDisplay={setSignInDisplay}/>
             
             {/* sign in/sign up modal */}
-            <SignIn show={signInDisplay} handleClose={() => setSignInDisplay(false)}/>
+            <SignIn show={signInDisplay}  handleClose={() => setSignInDisplay(false)}/>
             
             <hr class="solid-divider" />
 

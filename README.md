@@ -32,3 +32,7 @@ The requirements of the project are:
 [Trello](https://trello.com/invite/cs411team4/ATTIf04674ff02b32390ffb697029b0a07194BBAFE89) for our project and work distribution. This workspace contains Trello boards for each of our 6 user stories, where each user story contains cards assigned for each person. 
 
 [Figma](https://www.figma.com/file/zZclW4Irn6mDRPRcaqs1BH/Untitled?node-id=0%3A1&t=0pTKcc6fYUa83ELy-1) wireframe for the website.
+
+
+[Google Cloud Project](https://console.cloud.google.com/home/dashboard?project=study-with-friends-383014&supportedpurview=project)
+

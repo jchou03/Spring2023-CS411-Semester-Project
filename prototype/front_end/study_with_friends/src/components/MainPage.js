@@ -4,12 +4,19 @@ import '../style/App.css';
 import TopBar from './TopBar'
 import StudySession from './StudySession'
 import Studying from "./Studying"
+import SignIn from "./SignIn"
+// can use modals for sign in/sign up instead of using using react-router-dom with separate pages
+// import { 
+//     BrowserRouter as Router,
+//     Switch, 
+//     Route, 
+//     Redirect, 
+// } from "react-router-dom"
 
 // react boostrap imports
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
-
 
 // this array of study sessions will
 var studySessions = [
@@ -30,8 +37,11 @@ var studySessions = [
     }
 ]
 
-
 function MainPage(props){
+    // hooks to determine the display status of the modal with sign in/sign up pages
+    const [signInDisplay, setSignInDisplay] = useState(false);
+    const [signUpDisplay, setSignUpDisplay] = useState(false);
+
     // hook to determine the study status of the user
     const [studying, setStudying] = useState(false);
     // function to stop the study session
@@ -59,7 +69,10 @@ function MainPage(props){
 
     return(
         <div id="mainPage">
-            <TopBar />
+            <TopBar setDisplay={setSignInDisplay}/>
+            
+            {/* sign in/sign up modal */}
+            <SignIn show={signInDisplay} handleClose={() => setSignInDisplay(false)}/>
             
             <hr class="solid-divider" />
 

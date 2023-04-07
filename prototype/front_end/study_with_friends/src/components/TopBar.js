@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TopBar (props) {
+    console.log(props.setDisplay)
     const [username, setUsername] = useState("Laz")
 
     const signOut = () => {
@@ -12,6 +13,7 @@ function TopBar (props) {
     }
 
     const signIn = () => {
+        props.setDisplay(true)
         setUsername("Laz")
     }
 
@@ -21,8 +23,12 @@ function TopBar (props) {
             <div>
                 {/* can add a profile picture in top right later */}
                 {/* custom right side depending on if the user is signed in or not */}
+                
                 {username === "" ? 
-                    (<Button variant="primary" onClick={signIn}>Sign In</Button>) : 
+                    (<div class="right-side">
+                        <Button variant="primary" onClick={props.signIn}>Sign In</Button>
+                        <Button variant="primary" onClick={signIn}>Sign Up</Button>
+                    </div>) : 
                     (<div class="right-side">
                         <p>Hello {username}</p> 
                         <Button variant="primary" onClick={signOut}>Sign Out</Button>

@@ -5,6 +5,7 @@ import TopBar from './TopBar'
 import StudySession from './StudySession'
 import Studying from "./Studying"
 import SignIn from "./SignIn"
+import Map from "./Map"
 // can use modals for sign in/sign up instead of using using react-router-dom with separate pages
 // import { 
 //     BrowserRouter as Router,
@@ -36,6 +37,15 @@ var studySessions = [
         time:"2:15"
     }
 ]
+
+// test object to hold a location
+const testLocation = {
+    address: '1600 Amphitheatre Parkway, Mountain View, california.',
+    lat: 37.42216,
+    lng: -122.08427,
+}
+
+const zoomDefault = 10;
 
 function MainPage(props){
     // hooks to determine the display status of the modal with sign in/sign up pages
@@ -127,15 +137,10 @@ function MainPage(props){
                         </Modal.Footer>
                     </Modal>
 
-
-
-
-                    <p>google maps</p>
+                    <Map location={testLocation} zoomLevel={zoomDefault}/>
                 </div>
             </div>
         </div>
-
-
     )
 }
 

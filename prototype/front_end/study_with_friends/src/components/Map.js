@@ -8,7 +8,7 @@ const Map = ({ location, zoomLevel }) => (
     <div className="map">  
       <div className="google-map">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'temporarily add here without committing it while backend isn\'t ready yet' }}
+          bootstrapURLKeys={{ key: 'placeholder' }}
           defaultCenter={location}
           defaultZoom={zoomLevel}
         >

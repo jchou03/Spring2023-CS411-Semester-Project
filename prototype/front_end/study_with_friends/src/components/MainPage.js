@@ -40,9 +40,9 @@ var studySessions = [
 
 // test object to hold a location
 const testLocation = {
-    address: '1600 Amphitheatre Parkway, Mountain View, california.',
-    lat: 37.42216,
-    lng: -122.08427,
+    address: 'Boston, MA 02215',
+    lat: 42.35085737795678,
+    lng: -71.10533494442352,
 }
 
 const zoomDefault = 10;

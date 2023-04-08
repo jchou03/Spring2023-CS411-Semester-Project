@@ -36,3 +36,4 @@ The requirements of the project are:
 
 [Google Cloud Project](https://console.cloud.google.com/home/dashboard?project=study-with-friends-383014&supportedpurview=project)
 
+[Product Demo Video](https://www.loom.com/share/52a34f1443a34988905fe8a01ddf7e93)

@@ -3,6 +3,7 @@ import React, {useState} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 function SignIn(props){
     // hook to keep track of the inputted username
@@ -27,8 +28,12 @@ function SignIn(props){
                         Oauth Sign In Goes Here
                     </Form.Group>
                 </Form>
-                Oauth Sign In Button Here
             </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={props.handleClose}>
+                    Sign In Using OAuth
+                </Button>
+            </Modal.Footer>
         </Modal>
     )
 }

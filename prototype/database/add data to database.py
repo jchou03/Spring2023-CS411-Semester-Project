@@ -54,6 +54,9 @@ def add_friend(user_id, friend_id, friend_relation):
     db.close()
 
 def find_all_friends(user_id):
+    # 
+    # Input user id to return all user relationships 
+    #
     db = mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
 
     cursor = db.cursor()
@@ -76,6 +79,10 @@ def find_all_friends(user_id):
     return ls
 
 def find_user(user_id): 
+    #
+    # returns user info in a list
+    #
+
     db = mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
 
     cursor = db.cursor()
@@ -98,6 +105,8 @@ def find_user(user_id):
     return ls
 
 def remove_user(user_id):
+    # input user info to remove user 
+
     db = mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
 
     cursor = db.cursor()
@@ -121,18 +130,60 @@ def remove_user(user_id):
     db.close()
 
 def change_user_info(user_id,user_name = None, user_instagram_connection = None, user_custom_id= None , user_email = None,  user_password = None , user_location = None, user_study_time = None ): 
+    # Input user id and what you would like to change to update user info
+
+    
     ls = [user_name ,user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time]
     lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time"]
     for num in range(len(ls)): 
         if ls[num] != None: 
 
-            #sql = ('''UPDATE user_profile SET %s = %s WHERE user_id = %s VALUES (%s, %s, %s)''')
+            db = mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
 
-            print(ls[num], lss[num], user_id)
+            cursor = db.cursor()
 
+            # adding users to profile 
+            print(lss[num])
+            query1 = "UPDATE user_profile SET %s = '%s'  WHERE user_id = %s ;" % (lss[num],ls[num],user_id) 
+        
             
-change_user_info ( 1 ,"hat")
-#add_friend(1,2,'friend both')
+            cursor.execute(query1)
+
+            db.commit()
+
+            cursor.close()
+
+            db.close()
+
+
+
+
+def change_friend_status(user_id,friend_id,friend_relation): 
+        # insert user_id, friend_id, and Friend_relation to update current existing relationships 
+
+        
+        db = mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
+
+        cursor = db.cursor()
+
+        # adding users to profile 
+
+        query1 = '''UPDATE friend_list SET friend_relation = '%s' WHERE user_id = %s AND friend_id = %s;''' % (friend_relation,user_id,friend_id) 
+        
+        cursor.execute(query1)
+
+        db.commit()
+
+        cursor.close()
+
+        db.close()
+    
+change_friend_status(1,2,'1 friend 2')
+
+#add_friend(2,3,'2 friend 1')
+#print(find_user(3))
+#change_user_info (1 ,'ihatesql')
+#add_friend(4,5,'friend both')
 #print(find_all_friends(2))
 
 #remove_user(2)
@@ -141,3 +192,4 @@ change_user_info ( 1 ,"hat")
 
 #add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00" )
 #add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00" )
+#add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20")

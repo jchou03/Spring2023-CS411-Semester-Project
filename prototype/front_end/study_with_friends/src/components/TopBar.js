@@ -26,8 +26,8 @@ function TopBar (props) {
                 
                 {username === "" ? 
                     (<div class="right-side">
-                        <Button variant="primary" onClick={props.signIn}>Sign In</Button>
-                        <Button variant="primary" onClick={signIn}>Sign Up</Button>
+                        <Button variant="primary" onClick={signIn}>Sign In</Button>
+                        {/* <Button variant="primary" onClick={signIn}>Sign Up</Button> */}
                     </div>) : 
                     (<div class="right-side">
                         <p>Hello {username}</p> 

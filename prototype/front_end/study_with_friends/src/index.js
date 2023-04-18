@@ -6,9 +6,10 @@ import MainPage from './components/MainPage'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // strict mode turned off due to causing errors with 
+  // <React.StrictMode>
     <MainPage />
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -92,6 +92,16 @@ def add_user_route():
         user_data['user_custom_id']
     )
     return jsonify({"message": "User added successfully"}), 201
+
+def add_user_route():
+    user_data = request.get_json()
+    add_user(
+        user_data['user_name'],
+        user_data['user_id'],
+        user_data['user_instagram_connection'],
+        user_data['user_custom_id']
+    )
+    return jsonify({"message": "User added successfully"}), 201
    
  
 @app.route('/find_all_friends/<int:user_id>', methods=['GET'])

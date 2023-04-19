@@ -178,9 +178,13 @@ def change_friend_status(user_id,friend_id,friend_relation):
 
         db.close()
     
-change_friend_status(1,2,'1 friend 2')
+add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00" )
+add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00" )
+add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20")
 
-#add_friend(2,3,'2 friend 1')
+#change_friend_status(1,2,'1 friend 2')
+
+add_friend(2,3,'2 friend 1')
 #print(find_user(3))
 #change_user_info (1 ,'ihatesql')
 #add_friend(4,5,'friend both')
@@ -190,6 +194,3 @@ change_friend_status(1,2,'1 friend 2')
 #print(find_user(2))
 #add_friend(3,2,'2 friend 1' )
 
-#add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00" )
-#add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00" )
-#add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20")

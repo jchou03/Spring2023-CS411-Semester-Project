@@ -12,7 +12,6 @@ def get_conn():
     return pymysql.connect(host="127.0.0.1", user="root", password="bw20011215", database="space_missions", port=3306,
                            charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
 
-
 def add_user(user_name, user_instagram_connection, user_custom_id):
     db = get_conn()
     cursor = db.cursor()
@@ -27,7 +26,6 @@ def add_user(user_name, user_instagram_connection, user_custom_id):
     print(cursor.rowcount, "record inserted.")
     cursor.close()
     db.close()
-
 
 def add_friend(user_id, friend_id, friend_relation):
     db = get_conn()
@@ -113,11 +111,6 @@ def add_user_route():
 def find_all_friends_route(user_id):
     friends = find_all_friends(user_id)
     return jsonify(friends)
-
-
-
-
-
 
 
 @app.route('/login')

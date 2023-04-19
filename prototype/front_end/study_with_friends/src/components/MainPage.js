@@ -19,23 +19,32 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-// this array of study sessions will
-var studySessions = [
+// updated data structure, link study sessions to the friends, so pull the list of friends, then check if they have study sessions 
+var friends = [
     {
         name:"Jared",
-        location:"GSU",
-        time:"11:20"
+        studyingNow: true,
+        studySession: {
+            location:"GSU",
+            time:"11:20"
+        }
     },
     {
         name:"Spencer",
-        location:"Questrom",
-        time:"1:45"
+        studyingNow: true,
+        studySession: {
+            location:"Questrom",
+            time:"1:45"
+        }
     },
     {
         name:"Bowen",
-        location:"CDS",
-        time:"2:15"
-    }
+        studyingNow: true,
+        studySession: {
+            location:"CDS",
+            time:"2:15"
+        }
+    },
 ]
 
 // test object to hold a location
@@ -94,8 +103,10 @@ function MainPage(props){
 
             <div id="main-row">
                 <div class="column" id="study-sessions">
-                    {studySessions.map((details) => {
-                        return (<StudySession name={details.name} location={details.location} time={details.time}/>)
+                    {friends.map((friend) => {
+                        if(friend.studyingNow){
+                            return (<StudySession name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
+                        }
                     })}
                 </div>
                 <div class="column">

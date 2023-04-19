@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://jchou03.github.io/Spring2023-CS411-Semester-Project",
   "private": true,
+  "proxy:": "https://localhost:127.0.0.1",
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
     "@testing-library/jest-dom": "^5.16.5",

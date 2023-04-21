@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-   return render_template('index.html')
+#    return render_template('index.html')
+    return {"testing": "test"}
 # app.add_url_rule('/', 'hello', hello_world)这个是重定向  就是把hello这个路由映射成/，所以你看上去没变化
 
 def get_conn():

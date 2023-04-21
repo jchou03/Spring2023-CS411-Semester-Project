@@ -1,12 +1,18 @@
 import React, {useState} from "react";
 import '../style/App.css';
 import '../style/TopBar.css'
-import Button from 'react-bootstrap/Button'
+import { Button, Form, Modal } from 'react-bootstrap'
+import FriendDisplay from "./Friend";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TopBar (props) {
     console.log(props.setDisplay)
     const [username, setUsername] = useState("Laz")
+
+    // hook for showing friend modal
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false);
+    const handleOpen = () => setShow(true);
 
     const signOut = () => {
         setUsername("")
@@ -30,11 +36,30 @@ function TopBar (props) {
                         {/* <Button variant="primary" onClick={signIn}>Sign Up</Button> */}
                     </div>) : 
                     (<div class="right-side">
-                        <p>Hello {username}</p> 
+                        <p>Hello {username}</p>
+                        <Button variant="light" onClick={handleOpen}>Friends</Button>
                         <Button variant="primary" onClick={signOut}>Sign Out</Button>
                     </div>)
                 }
             </div>
+
+            {/* modal for showing list of friends */}
+            <Modal
+                show={show}
+                keyboard={true}
+                onEscapeKeyDown={handleClose}
+                backdrop={true}
+                onHide={handleClose}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Friend List</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <FriendDisplay friends={props.friends}/>
+                </Modal.Body>
+            </Modal>
+
+
         </div>
     )
 }

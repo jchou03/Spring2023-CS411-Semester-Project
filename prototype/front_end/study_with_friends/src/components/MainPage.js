@@ -22,6 +22,7 @@ import Form from 'react-bootstrap/Form'
 // updated data structure, link study sessions to the friends, so pull the list of friends, then check if they have study sessions 
 var friends = [
     {
+        id:1,
         name:"Jared",
         studyingNow: true,
         studySession: {
@@ -30,6 +31,7 @@ var friends = [
         }
     },
     {
+        id:2,
         name:"Spencer",
         studyingNow: true,
         studySession: {
@@ -38,6 +40,7 @@ var friends = [
         }
     },
     {
+        id:3,
         name:"Bowen",
         studyingNow: true,
         studySession: {
@@ -91,7 +94,7 @@ function MainPage(props){
 
     return(
         <div id="mainPage">
-            <TopBar setDisplay={setSignInDisplay}/>
+            <TopBar setDisplay={setSignInDisplay} friends={friends}/>
             
             {/* sign in/sign up modal */}
             <SignIn show={signInDisplay}  handleClose={() => setSignInDisplay(false)}/>
@@ -105,7 +108,9 @@ function MainPage(props){
                 <div class="column" id="study-sessions">
                     {friends.map((friend) => {
                         if(friend.studyingNow){
-                            return (<StudySession name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
+                            return (<StudySession key={friend.id} name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
+                        }else{
+                            return <></>
                         }
                     })}
                 </div>

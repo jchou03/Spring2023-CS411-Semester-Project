@@ -1,13 +1,15 @@
 import React, { useState } from "react"
 import Modal from "react-bootstrap/Modal"
 
-function FriendDisplay (props){
+function FriendDisplay ({name, studyingNow, studySession}){
     return (
         <div>
-            <p>{props.name}</p>
+            <p>{name}</p>
         </div>
     )
 }
+
+// get an array of friend objects in props
 
 function FriendList (props){
     return (
@@ -25,7 +27,7 @@ function FriendList (props){
             <Modal.Body>
                 {/* insert mapping of friends to display */}
                 {props.friends.map((friend) => {
-                    return (<FriendDisplay name={friend.name} />)
+                    return (<FriendDisplay friend={friend} />)
                 })}
             </Modal.Body>
             <Modal.Footer>

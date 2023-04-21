@@ -1,5 +1,6 @@
 from flask import Flask,request,render_template,jsonify
-import mysql
+import datetime
+import mysql.connector
 app = Flask(__name__)
 
 @app.route('/')
@@ -240,5 +241,9 @@ def submit():
 # 每个带@app.route的方法，都是你对外暴露的方法，提供给别人调用的，不管是前端还是服务端都可以调用，但是要确保别人能访问到你的电脑，
 # 你可以返回数据return jsonify(result)，也可以返回页面return render_template('index.html')
 # def get_conn(): 这个方法就是创建一个数据库链接，等于将你这个应用和数据库搭了一个桥梁，你可以通过这个桥梁从数据库里拿数据
-if __name__ == '__main__':
-   app.run()
+
+#add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00" )
+#add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00" )
+#add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20")
+if  __name__ == '__main__':
+    app.run()

@@ -5,24 +5,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-#    return render_template('index.html')
-    return {"testing": "test"}
+   return render_template('index.html')
 # app.add_url_rule('/', 'hello', hello_world)这个是重定向  就是把hello这个路由映射成/，所以你看上去没变化
 
 def get_conn():
     # 这里是通过pymysql这个第三方库（一般是别人写好共享出来，便于而大家使用的工具方法，有兴趣可以看他的源码）
     return mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
     
-def add_user(user_name, user_id, user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time):
+def add_user(user_name, user_id, user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time, is_user_studing, json_object):
     db = get_conn()
 
     cursor = db.cursor()
 
     # adding users to profile 
 
-    sql = ('''INSERT INTO user_profile(user_name, user_id, user_instagram_connection, user_custom_id, user_email, user_password,user_location, user_study_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''')
+    sql = ('''INSERT INTO user_profile(user_name, user_id, user_instagram_connection, user_custom_id, user_email, user_password,user_location, user_study_time, is_user_studying ,json_object) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''')
 
-    val = (user_name, user_id, user_instagram_connection, user_custom_id,user_email,user_password, user_location, user_study_time)
+    val = (user_name, user_id, user_instagram_connection, user_custom_id,user_email,user_password, user_location, user_study_time, is_user_studing, json_object )
 
     cursor.execute(sql,val)
 
@@ -137,12 +136,12 @@ def remove_user(user_id):
 
     db.close()
 
-def change_user_info(user_id,user_name = None, user_instagram_connection = None, user_custom_id= None , user_email = None,  user_password = None , user_location = None, user_study_time = None ): 
-    # Input user id and what you would like to change to update user info
+def change_user_info(user_id,user_name = None, user_instagram_connection = None, user_custom_id= None , user_email = None,  user_password = None , user_location = None, user_study_time = None , is_user_studing = None, json_object = None  ): 
+   # Input user id and what you would like to change to update user info
     
-    ls = [user_name ,user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time]
-    lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time"]
-    for num in range(len(ls)): 
+   ls = [user_name ,user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time, is_user_studing, json_object ]
+   lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time", "is_user_studying" ,"json_object" ]
+   for num in range(len(ls)): 
         if ls[num] != None: 
 
             db = get_conn()
@@ -241,8 +240,9 @@ def submit():
 # 你可以返回数据return jsonify(result)，也可以返回页面return render_template('index.html')
 # def get_conn(): 这个方法就是创建一个数据库链接，等于将你这个应用和数据库搭了一个桥梁，你可以通过这个桥梁从数据库里拿数据
 
-#add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00" )
-#add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00" )
-#add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20")
+add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
+add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
+add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
+
 if  __name__ == '__main__':
     app.run()

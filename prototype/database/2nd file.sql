@@ -20,7 +20,12 @@ CREATE TABLE user_profile(
     
     user_location VARCHAR(255),
     
-    user_study_time DATETIME
+    user_study_time DATETIME,
+
+    is_user_studying BOOLEAN,
+
+    json_object NVARCHAR(4000)
+
     );
     
 CREATE TABLE friend_list(

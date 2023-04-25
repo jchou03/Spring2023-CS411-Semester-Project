@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 import TopBar from './TopBar'
@@ -18,6 +19,27 @@ import Map from "./Map"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+
+// Facebook login functions
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{135421432654185}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{v13.0}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 
 // updated data structure, link study sessions to the friends, so pull the list of friends, then check if they have study sessions 
 var friends = [
@@ -92,6 +114,18 @@ function MainPage(props){
         handleClose()
     }
 
+    useEffect(() => {
+        axios.get('http://127.0.0.1:5000/').then(response => {
+            console.log("SUCCESS" , response)
+        }).catch(error => {
+            console.log(error)
+        })
+    })
+
+    // error connecting using axios due to CORS policy
+    // access to XMLHttpRequest at 'http://127.0.0.1:5000/' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+    // returning jsx element
     return(
         <div id="mainPage">
             <TopBar setDisplay={setSignInDisplay} friends={friends}/>

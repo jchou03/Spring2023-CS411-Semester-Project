@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 import TopBar from './TopBar'
@@ -18,6 +19,9 @@ import Map from "./Map"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+
+// facebook oauth login
+// import facebook
 
 // updated data structure, link study sessions to the friends, so pull the list of friends, then check if they have study sessions 
 var friends = [
@@ -60,6 +64,28 @@ const testLocation = {
 const zoomDefault = 10;
 
 function MainPage(props){
+
+//     // Facebook login functions
+// window.fbAsyncInit = function() {
+//     FB.init({
+//       appId      : '{135421432654185}',
+//       cookie     : true,
+//       xfbml      : true,
+//       version    : '{v13.0}'
+//     });
+
+//     FB.AppEvents.logPageView();   
+
+//   };
+
+//   (function(d, s, id){
+//      var js, fjs = d.getElementsByTagName(s)[0];
+//      if (d.getElementById(id)) {return;}
+//      js = d.createElement(s); js.id = id;
+//      js.src = "https://connect.facebook.net/en_US/sdk.js";
+//      fjs.parentNode.insertBefore(js, fjs);
+//    }(document, 'script', 'facebook-jssdk'));
+
     // hooks to determine the display status of the modal with sign in/sign up pages
     const [signInDisplay, setSignInDisplay] = useState(false);
     const [signUpDisplay, setSignUpDisplay] = useState(false);
@@ -91,6 +117,14 @@ function MainPage(props){
         setStudying(true)
         handleClose()
     }
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:5000/').then(response => {
+            console.log("SUCCESS" , response)
+        }).catch(error => {
+            console.log(error)
+        })
+    })
 
     return(
         <div id="mainPage">

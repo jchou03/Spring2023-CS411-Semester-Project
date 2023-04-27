@@ -225,27 +225,15 @@ def login():
    username = request.form.get("username")
    pass
 
-#这就是从前端获取参数，地址时间+当前用户，一起保存到数据库
 @app.route('/submit')
 def submit():
    address = request.form.get("address")
    studytime = request.form.get("studytime")
-   #获取当前用户，然后一起保存到数据库，后面自己完善一下，再返回给前端是否成功的消息
    pass
 
-# 可以先写这块逻辑
-
-
-# 这个是flask框架的入口方法，
-# 相当于你双击了一个应用,你点的桌面上这些应用图标就相当于执行了这个命令，只是每个应用命令不一样而已，这个能懂吧
-
-# 每个带@app.route的方法，都是你对外暴露的方法，提供给别人调用的，不管是前端还是服务端都可以调用，但是要确保别人能访问到你的电脑，
-# 你可以返回数据return jsonify(result)，也可以返回页面return render_template('index.html')
-# def get_conn(): 这个方法就是创建一个数据库链接，等于将你这个应用和数据库搭了一个桥梁，你可以通过这个桥梁从数据库里拿数据
-
-# add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
-# add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
-# add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
+add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
+add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
+add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
 
 if  __name__ == '__main__':
     app.run()

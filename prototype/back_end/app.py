@@ -222,13 +222,15 @@ def login():
    username = request.form.get("username")
    pass
 
-#这就是从前端获取参数，地址时间+当前用户，一起保存到数据库
 @app.route('/submit')
 def submit():
    address = request.form.get("address")
    studytime = request.form.get("studytime")
-   #获取当前用户，然后一起保存到数据库，后面自己完善一下，再返回给前端是否成功的消息
    pass
+
+add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
+add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
+add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
 
 
 if  __name__ == '__main__':

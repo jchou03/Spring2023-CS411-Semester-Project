@@ -235,5 +235,9 @@ add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01
 add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
 add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
 
+
 if  __name__ == '__main__':
     app.run()
+
+
+# my hero: https://stackoverflow.com/questions/26980713/solve-cross-origin-resource-sharing-with-flask

@@ -1,7 +1,19 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+
+// import styling
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
+
+// react boostrap imports
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+
+// other imports
+import axios from "axios";
+import FacebookLogin from 'react-facebook-login'
+
+// other components
 import TopBar from './TopBar'
 import StudySession from './StudySession'
 import Studying from "./Studying"
@@ -14,11 +26,6 @@ import Map from "./Map"
 //     Route, 
 //     Redirect, 
 // } from "react-router-dom"
-
-// react boostrap imports
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
 
 // facebook oauth login
 // import facebook
@@ -64,27 +71,9 @@ const testLocation = {
 const zoomDefault = 10;
 
 function MainPage(props){
-
-//     // Facebook login functions
-// window.fbAsyncInit = function() {
-//     FB.init({
-//       appId      : '{135421432654185}',
-//       cookie     : true,
-//       xfbml      : true,
-//       version    : '{v13.0}'
-//     });
-
-//     FB.AppEvents.logPageView();   
-
-//   };
-
-//   (function(d, s, id){
-//      var js, fjs = d.getElementsByTagName(s)[0];
-//      if (d.getElementById(id)) {return;}
-//      js = d.createElement(s); js.id = id;
-//      js.src = "https://connect.facebook.net/en_US/sdk.js";
-//      fjs.parentNode.insertBefore(js, fjs);
-//    }(document, 'script', 'facebook-jssdk'));
+    const responseFacebook = (response) => {
+        console.log(response)
+    }
 
     // hooks to determine the display status of the modal with sign in/sign up pages
     const [signInDisplay, setSignInDisplay] = useState(false);
@@ -128,6 +117,13 @@ function MainPage(props){
 
     return(
         <div id="mainPage">
+            <FacebookLogin
+                appId="135421432654185"
+                autoLoad={true}
+                fields="name,email,picture"
+                onClick={() => {console.log("clicked")}}
+                callback={responseFacebook} />
+
             <TopBar setDisplay={setSignInDisplay} friends={friends}/>
             
             {/* sign in/sign up modal */}

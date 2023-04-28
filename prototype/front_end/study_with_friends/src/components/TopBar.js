@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TopBar (props) {
     console.log(props.setDisplay)
-    const [username, setUsername] = useState("Laz")
 
     // hook for showing friend modal
     const [show, setShow] = useState(false)
@@ -15,13 +14,14 @@ function TopBar (props) {
     const handleOpen = () => setShow(true);
 
     const signOut = () => {
-        setUsername("")
+        props.setUser(null)
     }
 
     const signIn = () => {
         props.setDisplay(true)
-        setUsername("Laz")
     }
+
+    console.log(props.user)
 
     return (
         <div id="topbar">
@@ -30,13 +30,13 @@ function TopBar (props) {
                 {/* can add a profile picture in top right later */}
                 {/* custom right side depending on if the user is signed in or not */}
                 
-                {username === "" ? 
+                {props.user === null ? 
                     (<div class="right-side">
                         <Button variant="primary" onClick={signIn}>Sign In</Button>
                         {/* <Button variant="primary" onClick={signIn}>Sign Up</Button> */}
                     </div>) : 
                     (<div class="right-side">
-                        <p>Hello {username}</p>
+                        <p>Hello {props.user.name}</p>
                         <Button variant="light" onClick={handleOpen}>Friends</Button>
                         <Button variant="primary" onClick={signOut}>Sign Out</Button>
                     </div>)

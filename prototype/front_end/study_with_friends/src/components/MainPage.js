@@ -68,9 +68,12 @@ const testLocation = {
     lng: -71.10533494442352,
 }
 
-const zoomDefault = 10;
+const zoomDefault = 15;
 
 function MainPage(props){
+    // facebook login object
+    const [user, setUser] = useState(null);
+
     const responseFacebook = (response) => {
         console.log(response)
     }
@@ -86,9 +89,6 @@ function MainPage(props){
         // calculate study time here (later)
         setStudying(false);
     }
-
-    // hook to keep track of username
-    const [username, setUsername] = useState("")
 
     // hooks to keep track of the modal display status
     const [show, setShow] = useState(false);
@@ -107,6 +107,7 @@ function MainPage(props){
         handleClose()
     }
 
+    // test of connecting to the backend access
     useEffect(() => {
         axios.get('http://127.0.0.1:5000/').then(response => {
             console.log("SUCCESS" , response)
@@ -117,17 +118,10 @@ function MainPage(props){
 
     return(
         <div id="mainPage">
-            <FacebookLogin
-                appId="135421432654185"
-                autoLoad={true}
-                fields="name,email,picture"
-                onClick={() => {console.log("clicked")}}
-                callback={responseFacebook} />
-
-            <TopBar setDisplay={setSignInDisplay} friends={friends}/>
+            <TopBar setDisplay={setSignInDisplay} user={user} setUser={setUser} friends={friends}/>
             
             {/* sign in/sign up modal */}
-            <SignIn show={signInDisplay}  handleClose={() => setSignInDisplay(false)}/>
+            <SignIn show={signInDisplay} user={user} setUser={setUser} handleClose={() => setSignInDisplay(false)}/>
             
             <hr class="solid-divider" />
 

@@ -97,7 +97,7 @@ function MainPage(props){
         setStudying(false);
     }
 
-    // hooks to keep track of the modal display status
+    // hooks to keep track of the start study session modal display status
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
@@ -111,6 +111,14 @@ function MainPage(props){
         console.log("study location: " + studyLocation)
         console.log("study until time: " + studyEndTime)
         setStudying(true)
+        var updatedUser = {
+            'user_name': user.name,
+            'user_id': user.id,
+            'user_location': studyLocation,
+            'user_study_time': studyEndTime,
+            'is_user_studying': 0,
+        }
+        // axios.post('http://127.0.0.1:5000/update_user')
         handleClose()
     }
 

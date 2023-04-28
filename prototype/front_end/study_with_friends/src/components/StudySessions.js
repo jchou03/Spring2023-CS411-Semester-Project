@@ -13,7 +13,7 @@ function StudySession(props){
 }
 
 function StudySessions ({ user, friends }) {
-    console.log("friends " + friends)
+    // console.log("friends " + friends)
     for (var i = 0; i < friends.length; i++){
         console.log(friends[i])
     }

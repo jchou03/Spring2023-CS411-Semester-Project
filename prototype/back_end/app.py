@@ -106,9 +106,9 @@ def find_user(user_id):
     # adding users to profile 
 
     query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id))
-    
+    print("finding user in query")
     cursor.execute(query)
-
+    print("cursor is " + str(cursor))
     ls = []
 
     for info in cursor: 
@@ -366,10 +366,16 @@ def update_user(user_id):
     return jsonify({'status': 'success'}), 200
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
-   username = request.form.get("username")
-   pass
+    # print(request)
+    id = request.args.get('id')
+    # print("login function reached and id is: " + str(id))
+    response = jsonify(find_user(id))
+    # print("successfully found user " + str(response))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # print("login function completed, returning result")
+    return response
 
 @app.route('/submit')
 def submit():

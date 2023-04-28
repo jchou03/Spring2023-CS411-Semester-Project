@@ -381,9 +381,9 @@ def submit():
    studytime = request.form.get("studytime")
    pass
 
-# add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"location":"GSU", "Time":"12:45"}'  )
-# add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"location":"GSU", "Time":"12:45"}' )
-# add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"location":"GSU", "Time":"12:45"}')
+# add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","2023-01-01 00:00:00", True,'{"location":"GSU", "Time":"12:45"}'  )
+# add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","2023-01-01 00:00:00", False, '{"location":"GSU", "Time":"12:45"}' )
+# add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","2023-01-01 00:00:20", True, '{"location":"GSU", "Time":"12:45"}')
 
 #'1 friend 2' , '2 friend 1', 'friend both', '1 block 2', '2 block 1', 'block both'
 #add_friend(2,4,'friend both')

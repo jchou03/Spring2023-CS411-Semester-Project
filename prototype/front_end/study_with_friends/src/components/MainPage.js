@@ -79,7 +79,7 @@ function MainPage(props){
     // useEffect to update the friends when user is updated
     useEffect(() => {
         if(user != null){
-            axios.get(("http://127.0.0.1:5000/find_all_friends/" + 2)).then(response => {
+            axios.get(("http://127.0.0.1:5000/find_all_friends_with_user_info/" + 2)).then(response => {
                 setFriends(response.data)
                 console.log(friends)
             })
@@ -140,6 +140,8 @@ function MainPage(props){
             {/* display a bar to show study progress (when studying) */}
             {studying ? (<Studying location={studyLocation} time={studyEndTime} onClick={stopStudying}/>) : <></>}
 
+            {/* main row of content below the topbar, includes the study sessions, the start studying button,
+                and the google maps of study locations */}
             <div id="main-row">
                 <div class="column" id="study-sessions">
                     <StudySessions user={user} friends={friends}/>

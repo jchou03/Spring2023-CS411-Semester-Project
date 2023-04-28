@@ -88,6 +88,40 @@ def add_friend(user_id, friend_id, friend_relation):
 
     db.close()
 
+def find_user(user_id): 
+    # This function allows us to find a user in the user profile list and returns their info in a list which in than is a in a tuple. 
+    # Enter a user_id that does exist, or else it will give an error/not return anything 
+    # 
+    # - Spencer Yeh 
+    # 
+    # Donham Fun Fact: Jon Westling was the Eighth President of Boston University from 1996 - 2002. 
+    # During the Court Case, Guckenberger v. Boston University, he was accused of making controversial statements 
+    # about students with learning disabilities. "President Westling referred to students with learning disabilities as "a plague," 
+    # and an indication of "a silent genetic catastrophe," and he has made similar statements in letters to the New York Times, 
+    # the Boston Globe, campus newspapers, and students' parents.
+
+    db = get_conn()
+
+    cursor = db.cursor()
+
+    # adding users to profile 
+
+    query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id) )
+    
+    cursor.execute(query)
+
+    ls = []
+
+    for info in cursor: 
+        print(type(info))
+        ls.append(info)
+
+    cursor.close()
+
+    db.close()
+    return ls
+
+
 def find_all_friends(user_id):
     # This function finds all the friends a certain user has, if they have any
     #
@@ -126,17 +160,23 @@ def find_all_friends(user_id):
     db.close()
     return ls
 
-def find_user(user_id): 
-    # This function allows us to find a user in the user profile list and returns their info in a list which in than is a in a tuple. 
-    # Enter a user_id that does exist, or else it will give an error/not return anything 
-    # 
-    # - Spencer Yeh 
-    # 
-    # Donham Fun Fact: Jon Westling was the Eighth President of Boston University from 1996 - 2002. 
-    # During the Court Case, Guckenberger v. Boston University, he was accused of making controversial statements 
-    # about students with learning disabilities. "President Westling referred to students with learning disabilities as "a plague," 
-    # and an indication of "a silent genetic catastrophe," and he has made similar statements in letters to the New York Times, 
-    # the Boston Globe, campus newspapers, and students' parents.
+
+def find_all_friends_with_user_info(user_id):
+    # This function finds all the friends a certain user has, if they have any
+    #
+    # Input the user id and it will output a list of tuples of all the friends and their relationship status  
+    # Hopefully pretty simple 
+    #
+    # -Spencer Yeh 
+    #
+    # Donham Fun Fact: The Law building was named after Sumner M Redstone was an American billionaire businessman and media magnate. 
+    # He was the founder and chairman of the second incarnation of Viacom, chairman of CBS Corporation,and the majority owner and chairman
+    # of the National Amusements theater chain. He also taught law at BU for a bit. 
+    # In July 2010, Redstone was caught on tape trying to find the source of an apparently embarrassing leak within MTV.
+    # Redstone offered money and protection to a journalist if he would give up his source. Redstone had been pushing MTV 
+    # management to give more airtime to the band the Electric Barbarellas. On the message, Redstone tells the reporter that 
+    # "we're not going to kill" the source, adding "We just want to talk to him". The 87-year-old Redstone also told the reporter 
+    # he would be "well rewarded and well protected" if he would reveal the source. 
 
     db = get_conn()
 
@@ -144,20 +184,36 @@ def find_user(user_id):
 
     # adding users to profile 
 
-    query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id) )
+    query  = ('''SELECT * FROM friend_list WHERE user_id = %s OR friend_id = %s ;''' % (user_id,user_id) )
     
     cursor.execute(query)
-
+    
     ls = []
 
     for info in cursor: 
-        print(type(info))
         ls.append(info)
+    
+    lss = []
+    for i in ls: 
+        if(i[0] != user_id):
+            lss.append(i[0])
+        else: 
+            lss.append(i[1])
 
+    deets = [] 
+
+    for i in lss: 
+        temp = find_user(i)
+        deets.append(temp[0])
     cursor.close()
 
     db.close()
-    return ls
+
+
+
+    return deets 
+
+
 
 def remove_user(user_id):
     # input existing user_id to remove user from both friends list and user_list.   
@@ -199,7 +255,9 @@ def change_user_info(user_id,user_name = None, user_instagram_connection = None,
    # just count carefully 
    # - Spencer Yeh 
    #
-   # Donham Fun Fact:  
+   # Donham Fun Fact:  BU is a major research institution seeking knowledge and creating breakthroughs in everything from 
+   # African studies 
+   #to zebrafish genetics.
     
    ls = [user_name ,user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time, is_user_studing, json_object ]
    lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time", "is_user_studying" ,"json_object" ]
@@ -336,12 +394,13 @@ def submit():
 #add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
 
 #'1 friend 2' , '2 friend 1', 'friend both', '1 block 2', '2 block 1', 'block both'
-add_friend(2,4,'friend both')
-add_friend(3,4,'1 friend 2')
+#add_friend(2,4,'friend both')
+#add_friend(3,4,'1 friend 2')
 
+print(find_all_friends(4))
 
-if  __name__ == '__main__':
-    app.run()
+# if  __name__ == '__main__':
+#     app.run()
 
 
 # my hero: https://stackoverflow.com/questions/26980713/solve-cross-origin-resource-sharing-with-flask

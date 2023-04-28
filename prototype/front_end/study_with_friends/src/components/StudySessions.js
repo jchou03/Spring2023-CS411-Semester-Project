@@ -1,5 +1,16 @@
 import React, {useState} from 'react'
-import StudySession from './StudySession'
+import "../style/App.css"
+import "../style/StudySession.css"
+
+function StudySession(props){
+    return(
+        <div class="study-session">
+            <p>{props.name} is studying at {props.location}</p>
+            {/* need to implement the time font */}
+            <p class="time">{props.time != null ? ("until " + props.time) : ""}</p>
+        </div>
+    )
+}
 
 function StudySessions ({ user, friends }) {
     console.log("friends " + friends)
@@ -10,7 +21,7 @@ function StudySessions ({ user, friends }) {
     return (
         (user != null ? (friends.length != 0 ? (friends.map((friend) => {
             if(friend[8] == true){
-                return (<StudySession name={friend[0]}  location="test"/>)
+                return (<StudySession name={friend[0]}  location={friend[6]} time={friend[7]}/>)
             }
         })) : <p>Go get some friends</p>) : <p>Sign in to use the app!</p>) 
     )

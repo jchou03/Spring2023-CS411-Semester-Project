@@ -325,12 +325,8 @@ def find_all_friends_route(user_id):
 
 @app.route('/find_all_friends_with_user_info/<int:user_id>', methods=['GET'])
 def find_all_friends_with_user_info_route(user_id):
-    print(1)
     friends = find_all_friends_with_user_info(user_id)
-    print(str(2) + " the result is: " + str(friends))
-    response = jsonify({'data': friends})
-    # response = jsonify({'result': 'this is the result'})
-    print(3)
+    response = jsonify(friends)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 

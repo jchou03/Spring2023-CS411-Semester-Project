@@ -15,7 +15,6 @@ import FacebookLogin from 'react-facebook-login'
 
 // other components
 import TopBar from './TopBar'
-import StudySession from './StudySession'
 import StudySessions from './StudySessions'
 import Studying from "./Studying"
 import SignIn from "./SignIn"
@@ -145,13 +144,14 @@ function MainPage(props){
             <div id="main-row">
                 <div class="column" id="study-sessions">
                     <StudySessions user={user} friends={friends}/>
-                    {user != null ? testFriends.map((friend) => {
+                    {/* this is a test formatting for displaying study sessions, looking to replace this one with data pulled from the database
+                     {user != null ? testFriends.map((friend) => {
                         if(friend.studyingNow){
                             return (<StudySession key={friend.id} name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
                         }else{
                             return <></>
                         }
-                    }) : <></>}
+                    }) : <></>} */}
                 </div>
                 <div class="column">
                     <Button id="study-button" onClick={handleOpen}>

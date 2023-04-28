@@ -16,6 +16,7 @@ import FacebookLogin from 'react-facebook-login'
 // other components
 import TopBar from './TopBar'
 import StudySession from './StudySession'
+import StudySessions from './StudySessions'
 import Studying from "./Studying"
 import SignIn from "./SignIn"
 import Map from "./Map"
@@ -31,9 +32,10 @@ import Map from "./Map"
 // import facebook
 
 // updated data structure, link study sessions to the friends, so pull the list of friends, then check if they have study sessions 
-var friends = [
+
+// test friends
+var testFriends = [
     {
-        id:1,
         name:"Jared",
         studyingNow: true,
         studySession: {
@@ -42,7 +44,6 @@ var friends = [
         }
     },
     {
-        id:2,
         name:"Spencer",
         studyingNow: true,
         studySession: {
@@ -51,7 +52,6 @@ var friends = [
         }
     },
     {
-        id:3,
         name:"Bowen",
         studyingNow: true,
         studySession: {
@@ -71,8 +71,20 @@ const testLocation = {
 const zoomDefault = 15;
 
 function MainPage(props){
-    // facebook login object
+    // facebook login object -> sets the signed in state for the app
     const [user, setUser] = useState(null);
+    // hook to keep track of the friend states
+    const [friends, setFriends] = useState([]);
+
+    // useEffect to update the friends when user is updated
+    useEffect(() => {
+        if(user != null){
+            axios.get(("http://127.0.0.1:5000/find_all_friends/" + 2)).then(response => {
+                setFriends(response.data)
+                console.log(friends)
+            })
+        }
+    }, [user])
 
     const responseFacebook = (response) => {
         console.log(response)
@@ -98,7 +110,7 @@ function MainPage(props){
     // hooks to handle the form inputs for starting a study session
     const [studyLocation, setStudyLocation] = useState("")
     const [studyEndTime, setStudyEndTime] = useState("")
-
+    
     // function to handle the submit of the modal form
     const handleSubmit = () => {
         console.log("study location: " + studyLocation)
@@ -108,13 +120,13 @@ function MainPage(props){
     }
 
     // test of connecting to the backend access
-    useEffect(() => {
-        axios.get('http://127.0.0.1:5000/').then(response => {
-            console.log("SUCCESS" , response)
-        }).catch(error => {
-            console.log(error)
-        })
-    })
+    // useEffect(() => {
+    //     axios.get('http://127.0.0.1:5000/').then(response => {
+    //         console.log("SUCCESS" , response)
+    //     }).catch(error => {
+    //         console.log(error)
+    //     })
+    // })
 
     return(
         <div id="mainPage">
@@ -130,13 +142,14 @@ function MainPage(props){
 
             <div id="main-row">
                 <div class="column" id="study-sessions">
-                    {friends.map((friend) => {
+                    <StudySessions user={user} friends={friends}/>
+                    {user != null ? testFriends.map((friend) => {
                         if(friend.studyingNow){
                             return (<StudySession key={friend.id} name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
                         }else{
                             return <></>
                         }
-                    })}
+                    }) : <></>}
                 </div>
                 <div class="column">
                     <Button id="study-button" onClick={handleOpen}>
@@ -186,4 +199,3 @@ function MainPage(props){
 
 
 export default MainPage
-

@@ -10,8 +10,9 @@ function TopBar (props) {
 
     // hook for showing friend modal
     const [show, setShow] = useState(false)
-    const handleClose = () => setShow(false);
-    const handleOpen = () => setShow(true);
+    const handleClose = () => setShow(false)
+    const handleOpen = () => setShow(true)
+    
 
     const signOut = () => {
         props.setUser(null)
@@ -55,7 +56,7 @@ function TopBar (props) {
                     <Modal.Title>Friend List</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <FriendDisplay friends={props.friends}/>
+                    {/* <FriendDisplay friends={props.friends}/> */}
                 </Modal.Body>
             </Modal>
 

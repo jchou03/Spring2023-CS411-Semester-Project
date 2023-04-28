@@ -263,22 +263,15 @@ def change_user_info(user_id,user_name = None, user_instagram_connection = None,
    lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time", "is_user_studying" ,"json_object" ]
    for num in range(len(ls)): 
         if ls[num] != None: 
-
             db = get_conn()
-
             cursor = db.cursor()
 
             # adding users to profile 
             print(lss[num])
-            query1 = "UPDATE user_profile SET %s = '%s'  WHERE user_id = %s ;" % (lss[num],ls[num],user_id) 
-        
-            
+            query1 = "UPDATE user_profile SET %s = '%s'  WHERE user_id = %s ;" % (lss[num],ls[num],user_id)
             cursor.execute(query1)
-
             db.commit()
-
             cursor.close()
-
             db.close()
 
 
@@ -293,17 +286,11 @@ def change_friend_status(user_id,friend_id,friend_relation):
         cursor = db.cursor()
 
         # adding users to profile 
-
         query1 = '''UPDATE friend_list SET friend_relation = '%s' WHERE user_id = %s AND friend_id = %s;''' % (friend_relation,user_id,friend_id) 
-        
         cursor.execute(query1)
-
         db.commit()
-
         cursor.close()
-
         db.close()
-
 
 @app.route('/add_friend', methods=['POST'])
 def add_friend_route():
@@ -339,8 +326,11 @@ def add_user_route():
 @app.route('/find_all_friends/<int:user_id>', methods=['GET'])
 def find_all_friends_route(user_id):
     friends = find_all_friends(user_id)
-    return jsonify(friends)
-
+    print("friends " + str(friends))
+    response = jsonify(friends)
+    print("response" + str(response))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/update_user/<int:user_id>', methods=['POST'])
 def update_user_route(user_id):
@@ -399,8 +389,8 @@ def submit():
 
 print(find_all_friends(4))
 
-# if  __name__ == '__main__':
-#     app.run()
+if  __name__ == '__main__':
+    app.run()
 
 
 # my hero: https://stackoverflow.com/questions/26980713/solve-cross-origin-resource-sharing-with-flask

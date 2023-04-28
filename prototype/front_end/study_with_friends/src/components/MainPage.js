@@ -85,10 +85,6 @@ function MainPage(props){
         }
     }, [user])
 
-    const responseFacebook = (response) => {
-        console.log(response)
-    }
-
     // hooks to determine the display status of the modal with sign in/sign up pages
     const [signInDisplay, setSignInDisplay] = useState(false);
     const [signUpDisplay, setSignUpDisplay] = useState(false);

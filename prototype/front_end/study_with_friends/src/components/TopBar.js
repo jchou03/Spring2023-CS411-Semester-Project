@@ -56,7 +56,7 @@ function TopBar (props) {
                     <Modal.Title>Friend List</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* <FriendDisplay friends={props.friends}/> */}
+                    <FriendDisplay friends={props.friends}/>
                 </Modal.Body>
             </Modal>
 

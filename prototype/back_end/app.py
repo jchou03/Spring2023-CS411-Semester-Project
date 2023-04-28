@@ -105,7 +105,7 @@ def find_user(user_id):
 
     # adding users to profile 
 
-    query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id) )
+    query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id))
     
     cursor.execute(query)
 

@@ -19,9 +19,11 @@ function StudySessions ({ user, friends }) {
     }
 
     return (
-        (user != null ? (friends.length != 0 ? (friends.map((friend) => {
-            if(friend[8] == true){
-                return (<StudySession name={friend[0]}  location={friend[6]} time={friend[7]}/>)
+        (user !== null ? (friends.length !== 0 ? (friends.map((friend) => {
+            if(friend[8] === 1){
+                return (<StudySession key={friend.id} name={friend[0]}  location={friend[6]} time={friend[7]}/>)
+            }else{
+                return <></>
             }
         })) : <p>Go get some friends</p>) : <p>Sign in to use the app!</p>) 
     )

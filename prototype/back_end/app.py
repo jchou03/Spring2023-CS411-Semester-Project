@@ -146,22 +146,15 @@ def change_user_info(user_id,user_name = None, user_instagram_connection = None,
    lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time", "is_user_studying" ,"json_object" ]
    for num in range(len(ls)): 
         if ls[num] != None: 
-
             db = get_conn()
-
             cursor = db.cursor()
 
             # adding users to profile 
             print(lss[num])
-            query1 = "UPDATE user_profile SET %s = '%s'  WHERE user_id = %s ;" % (lss[num],ls[num],user_id) 
-        
-            
+            query1 = "UPDATE user_profile SET %s = '%s'  WHERE user_id = %s ;" % (lss[num],ls[num],user_id)
             cursor.execute(query1)
-
             db.commit()
-
             cursor.close()
-
             db.close()
 
 
@@ -171,17 +164,11 @@ def change_friend_status(user_id,friend_id,friend_relation):
         cursor = db.cursor()
 
         # adding users to profile 
-
         query1 = '''UPDATE friend_list SET friend_relation = '%s' WHERE user_id = %s AND friend_id = %s;''' % (friend_relation,user_id,friend_id) 
-        
         cursor.execute(query1)
-
         db.commit()
-
         cursor.close()
-
         db.close()
-
 
 @app.route('/add_friend', methods=['POST'])
 def add_friend_route():
@@ -217,8 +204,9 @@ def add_user_route():
 @app.route('/find_all_friends/<int:user_id>', methods=['GET'])
 def find_all_friends_route(user_id):
     friends = find_all_friends(user_id)
-    return jsonify(friends)
-
+    response = jsonify(friends)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/login')
 def login():
@@ -231,9 +219,9 @@ def submit():
    studytime = request.form.get("studytime")
    pass
 
-add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
-add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
-add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
+# add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
+# add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
+# add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
 
 
 if  __name__ == '__main__':

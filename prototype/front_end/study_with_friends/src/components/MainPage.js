@@ -1,7 +1,19 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+
+// import styling
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
+
+// react boostrap imports
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+
+// other imports
+import axios from "axios";
+import FacebookLogin from 'react-facebook-login'
+
+// other components
 import TopBar from './TopBar'
 import StudySession from './StudySession'
 import Studying from "./Studying"
@@ -14,11 +26,6 @@ import Map from "./Map"
 //     Route, 
 //     Redirect, 
 // } from "react-router-dom"
-
-// react boostrap imports
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
 
 // facebook oauth login
 // import facebook
@@ -61,30 +68,15 @@ const testLocation = {
     lng: -71.10533494442352,
 }
 
-const zoomDefault = 10;
+const zoomDefault = 15;
 
 function MainPage(props){
+    // facebook login object
+    const [user, setUser] = useState(null);
 
-//     // Facebook login functions
-// window.fbAsyncInit = function() {
-//     FB.init({
-//       appId      : '{135421432654185}',
-//       cookie     : true,
-//       xfbml      : true,
-//       version    : '{v13.0}'
-//     });
-
-//     FB.AppEvents.logPageView();   
-
-//   };
-
-//   (function(d, s, id){
-//      var js, fjs = d.getElementsByTagName(s)[0];
-//      if (d.getElementById(id)) {return;}
-//      js = d.createElement(s); js.id = id;
-//      js.src = "https://connect.facebook.net/en_US/sdk.js";
-//      fjs.parentNode.insertBefore(js, fjs);
-//    }(document, 'script', 'facebook-jssdk'));
+    const responseFacebook = (response) => {
+        console.log(response)
+    }
 
     // hooks to determine the display status of the modal with sign in/sign up pages
     const [signInDisplay, setSignInDisplay] = useState(false);
@@ -97,9 +89,6 @@ function MainPage(props){
         // calculate study time here (later)
         setStudying(false);
     }
-
-    // hook to keep track of username
-    const [username, setUsername] = useState("")
 
     // hooks to keep track of the modal display status
     const [show, setShow] = useState(false);
@@ -118,6 +107,7 @@ function MainPage(props){
         handleClose()
     }
 
+    // test of connecting to the backend access
     useEffect(() => {
         axios.get('http://127.0.0.1:5000/').then(response => {
             console.log("SUCCESS" , response)
@@ -128,10 +118,10 @@ function MainPage(props){
 
     return(
         <div id="mainPage">
-            <TopBar setDisplay={setSignInDisplay} friends={friends}/>
+            <TopBar setDisplay={setSignInDisplay} user={user} setUser={setUser} friends={friends}/>
             
             {/* sign in/sign up modal */}
-            <SignIn show={signInDisplay}  handleClose={() => setSignInDisplay(false)}/>
+            <SignIn show={signInDisplay} user={user} setUser={setUser} handleClose={() => setSignInDisplay(false)}/>
             
             <hr class="solid-divider" />
 

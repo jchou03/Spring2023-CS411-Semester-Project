@@ -284,6 +284,42 @@ def find_all_friends_route(user_id):
     return jsonify(friends)
 
 
+@app.route('/update_user/<int:user_id>', methods=['POST'])
+def update_user_route(user_id):
+    user_name = request.json.get('user_name')
+    user_instagram_connection = request.json.get('user_instagram_connection')
+    user_custom_id = request.json.get('user_custom_id')
+    user_email = request.json.get('user_email')
+    user_password = request.json.get('user_password')
+    user_location = request.json.get('user_location')
+    user_study_time = request.json.get('user_study_time')
+    is_user_studying = request.json.get('is_user_studying')
+    json_object = request.json.get('json_object')
+
+    try:
+        change_user_info(user_id, user_name, user_instagram_connection, user_custom_id, user_email, user_password,
+                         user_location, user_study_time, is_user_studying, json_object)
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 400
+    
+@app.route('/update_user/<int:user_id>', methods=['POST'])
+def update_user(user_id):
+    user_name = request.json.get('user_name')
+    user_instagram_connection = request.json.get('user_instagram_connection')
+    user_custom_id = request.json.get('user_custom_id')
+    user_email = request.json.get('user_email')
+    user_password = request.json.get('user_password')
+    user_location = request.json.get('user_location')
+    user_study_time = request.json.get('user_study_time')
+    is_user_studying = request.json.get('is_user_studying')
+    json_object = request.json.get('json_object')
+
+    change_user_info(user_id, user_name, user_instagram_connection, user_custom_id, user_email, user_password,
+                     user_location, user_study_time, is_user_studying, json_object)
+    return jsonify({'status': 'success'}), 200
+
+
 @app.route('/login')
 def login():
    username = request.form.get("username")
@@ -303,5 +339,9 @@ def submit():
 add_friend(2,4,'friend both')
 add_friend(3,4,'1 friend 2')
 
+
 if  __name__ == '__main__':
     app.run()
+
+
+# my hero: https://stackoverflow.com/questions/26980713/solve-cross-origin-resource-sharing-with-flask

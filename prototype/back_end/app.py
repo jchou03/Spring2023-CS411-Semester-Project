@@ -160,7 +160,15 @@ def find_user(user_id):
     return ls
 
 def remove_user(user_id):
-    # input user info to remove user 
+    # input existing user_id to remove user from both friends list and user_list.   
+    # 
+    # -Spencer Yeh 
+    # 
+    # Donham Fun Fact: John Silber was the seventh president of Boston University. In 2002, Silber ordered that the Boston University Academy, 
+    # a prep school operated by BU, disband its gay–straight alliance, a student club that staged demonstrations to publicize the 
+    # deleterious effects of homophobia. Silber dismissed the stated purpose of the club—to serve as a support group for gay students 
+    # and to promote tolerance and understanding between gay and straight students—accusing the club of being a vehicle for 
+    #"homosexual recruitment." Silber denounced the group for "evangelism" and "homosexual militancy" with the purpose of promoting gay sex.
 
     db = get_conn()
 
@@ -186,6 +194,12 @@ def remove_user(user_id):
 
 def change_user_info(user_id,user_name = None, user_instagram_connection = None, user_custom_id= None , user_email = None,  user_password = None , user_location = None, user_study_time = None , is_user_studing = None, json_object = None  ): 
    # Input user id and what you would like to change to update user info
+   # All fields are optional besides user_id
+   # this proably could be done eaiser by creating multiple functions for each customized column but that would make this file 10X longer
+   # just count carefully 
+   # - Spencer Yeh 
+   #
+   # Donham Fun Fact:  
     
    ls = [user_name ,user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time, is_user_studing, json_object ]
    lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time", "is_user_studying" ,"json_object" ]
@@ -212,6 +226,11 @@ def change_user_info(user_id,user_name = None, user_instagram_connection = None,
 
 def change_friend_status(user_id,friend_id,friend_relation): 
         # insert user_id, friend_id, and Friend_relation to update current existing relationships 
+        # please only put in relationships that already exist 
+        # - Spencer Yeh 
+        #
+        # Donham Fun Fact: 
+        #  
         db = get_conn()
         cursor = db.cursor()
 
@@ -276,9 +295,13 @@ def submit():
    studytime = request.form.get("studytime")
    pass
 
-add_user("spencer", "3","swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
-add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
-add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
+#add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"name":"John", "age":30, "car":null}'  )
+#add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"name":"John", "age":30, "car":null}' )
+#add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"name":"John", "age":30, "car":null}')
+
+#'1 friend 2' , '2 friend 1', 'friend both', '1 block 2', '2 block 1', 'block both'
+add_friend(2,4,'friend both')
+add_friend(3,4,'1 friend 2')
 
 if  __name__ == '__main__':
     app.run()

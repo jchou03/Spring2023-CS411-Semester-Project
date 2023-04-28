@@ -268,7 +268,9 @@ def add_user_route():
 @app.route('/find_all_friends/<int:user_id>', methods=['GET'])
 def find_all_friends_route(user_id):
     friends = find_all_friends(user_id)
+    print("friends " + str(friends))
     response = jsonify(friends)
+    print("response" + str(response))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
@@ -326,6 +328,9 @@ def submit():
 #'1 friend 2' , '2 friend 1', 'friend both', '1 block 2', '2 block 1', 'block both'
 add_friend(2,4,'friend both')
 add_friend(3,4,'1 friend 2')
+
+
+# testing the return resulting data
 
 
 if  __name__ == '__main__':

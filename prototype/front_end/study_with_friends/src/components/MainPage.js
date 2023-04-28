@@ -33,6 +33,34 @@ import Map from "./Map"
 
 // updated data structure, link study sessions to the friends, so pull the list of friends, then check if they have study sessions 
 
+// test friends
+var testFriends = [
+    {
+        name:"Jared",
+        studyingNow: true,
+        studySession: {
+            location:"GSU",
+            time:"11:20"
+        }
+    },
+    {
+        name:"Spencer",
+        studyingNow: true,
+        studySession: {
+            location:"Questrom",
+            time:"1:45"
+        }
+    },
+    {
+        name:"Bowen",
+        studyingNow: true,
+        studySession: {
+            location:"CDS",
+            time:"2:15"
+        }
+    },
+]
+
 // test object to hold a location
 const testLocation = {
     address: 'Boston, MA 02215',
@@ -51,9 +79,9 @@ function MainPage(props){
     // useEffect to update the friends when user is updated
     useEffect(() => {
         if(user != null){
-            axios.get(("http://127.0.0.1:5000/find_all_friends/" + user.id)).then(response => {
-                setFriends(response)
-                console.log(response)
+            axios.get(("http://127.0.0.1:5000/find_all_friends/" + 2)).then(response => {
+                setFriends(response.data)
+                console.log(friends)
             })
         }
     }, [user])
@@ -115,13 +143,13 @@ function MainPage(props){
             <div id="main-row">
                 <div class="column" id="study-sessions">
                     <StudySessions user={user} friends={friends}/>
-                    {/* {friends.map((friend) => {
+                    {user != null ? testFriends.map((friend) => {
                         if(friend.studyingNow){
                             return (<StudySession key={friend.id} name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
                         }else{
                             return <></>
                         }
-                    })} */}
+                    }) : <></>}
                 </div>
                 <div class="column">
                     <Button id="study-button" onClick={handleOpen}>

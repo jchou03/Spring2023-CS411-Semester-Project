@@ -6,8 +6,6 @@ import FriendDisplay from "./Friend";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TopBar (props) {
-    console.log(props.setDisplay)
-
     // hook for showing friend modal
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
@@ -21,8 +19,6 @@ function TopBar (props) {
     const signIn = () => {
         props.setDisplay(true)
     }
-
-    console.log(props.user)
 
     return (
         <div id="topbar">
@@ -56,7 +52,7 @@ function TopBar (props) {
                     <Modal.Title>Friend List</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* <FriendDisplay friends={props.friends}/> */}
+                    <FriendDisplay friends={props.friends}/>
                 </Modal.Body>
             </Modal>
 

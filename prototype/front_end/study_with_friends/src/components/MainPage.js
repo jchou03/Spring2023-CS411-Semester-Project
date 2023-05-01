@@ -15,7 +15,6 @@ import FacebookLogin from 'react-facebook-login'
 
 // other components
 import TopBar from './TopBar'
-import StudySession from './StudySession'
 import StudySessions from './StudySessions'
 import Studying from "./Studying"
 import SignIn from "./SignIn"
@@ -79,16 +78,12 @@ function MainPage(props){
     // useEffect to update the friends when user is updated
     useEffect(() => {
         if(user != null){
-            axios.get(("http://127.0.0.1:5000/find_all_friends/" + 2)).then(response => {
+            axios.get(("http://127.0.0.1:5000/find_all_friends_with_user_info/" + 2)).then(response => {
                 setFriends(response.data)
                 console.log(friends)
             })
         }
     }, [user])
-
-    const responseFacebook = (response) => {
-        console.log(response)
-    }
 
     // hooks to determine the display status of the modal with sign in/sign up pages
     const [signInDisplay, setSignInDisplay] = useState(false);
@@ -102,7 +97,7 @@ function MainPage(props){
         setStudying(false);
     }
 
-    // hooks to keep track of the modal display status
+    // hooks to keep track of the start study session modal display status
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
@@ -116,6 +111,14 @@ function MainPage(props){
         console.log("study location: " + studyLocation)
         console.log("study until time: " + studyEndTime)
         setStudying(true)
+        var updatedUser = {
+            'user_name': user.name,
+            'user_id': user.id,
+            'user_location': studyLocation,
+            'user_study_time': studyEndTime,
+            'is_user_studying': 0,
+        }
+        // axios.post('http://127.0.0.1:5000/update_user')
         handleClose()
     }
 
@@ -140,16 +143,19 @@ function MainPage(props){
             {/* display a bar to show study progress (when studying) */}
             {studying ? (<Studying location={studyLocation} time={studyEndTime} onClick={stopStudying}/>) : <></>}
 
+            {/* main row of content below the topbar, includes the study sessions, the start studying button,
+                and the google maps of study locations */}
             <div id="main-row">
                 <div class="column" id="study-sessions">
                     <StudySessions user={user} friends={friends}/>
-                    {user != null ? testFriends.map((friend) => {
+                    {/* this is a test formatting for displaying study sessions, looking to replace this one with data pulled from the database
+                     {user != null ? testFriends.map((friend) => {
                         if(friend.studyingNow){
                             return (<StudySession key={friend.id} name={friend.name} location={friend.studySession.location} time={friend.studySession.time}/>)
                         }else{
                             return <></>
                         }
-                    }) : <></>}
+                    }) : <></>} */}
                 </div>
                 <div class="column">
                     <Button id="study-button" onClick={handleOpen}>

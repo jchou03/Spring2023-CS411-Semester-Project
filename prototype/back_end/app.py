@@ -10,7 +10,6 @@ def hello_world():
     return response
 #    return render_template('index.html')
 # app.add_url_rule('/', 'hello', hello_world)这个是重定向  就是把hello这个路由映射成/，所以你看上去没变化
-
 def get_conn():
     # 这里是通过pymysql这个第三方库（一般是别人写好共享出来，便于而大家使用的工具方法，有兴趣可以看他的源码）
     return mysql.connector.connect(user='root', host='127.0.0.1', port=3306, password='Hikeleftstation12', database='app_server')
@@ -106,10 +105,10 @@ def find_user(user_id):
 
     # adding users to profile 
 
-    query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id) )
-    
+    query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id))
+    print("finding user in query")
     cursor.execute(query)
-
+    print("cursor is " + str(cursor))
     ls = []
 
     for info in cursor: 
@@ -205,14 +204,11 @@ def find_all_friends_with_user_info(user_id):
     # this loop uses the find user function and allows us to get all of our user info and put it into a list 
 
     deets = [] 
-
     for i in lss: 
         temp = find_user(i)
         deets.append(temp[0])
     cursor.close()
-
     db.close()
-
     return deets 
     # looking for a nutty joke 
 
@@ -336,6 +332,13 @@ def find_all_friends_route(user_id):
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+@app.route('/find_all_friends_with_user_info/<int:user_id>', methods=['GET'])
+def find_all_friends_with_user_info_route(user_id):
+    friends = find_all_friends_with_user_info(user_id)
+    response = jsonify(friends)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
 @app.route('/update_user/<int:user_id>', methods=['POST'])
 def update_user_route(user_id):
     user_name = request.json.get('user_name')
@@ -372,10 +375,16 @@ def update_user(user_id):
     return jsonify({'status': 'success'}), 200
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
-   username = request.form.get("username")
-   pass
+    # print(request)
+    id = request.args.get('id')
+    # print("login function reached and id is: " + str(id))
+    response = jsonify(find_user(id))
+    # print("successfully found user " + str(response))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # print("login function completed, returning result")
+    return response
 
 @app.route('/submit')
 def submit():
@@ -383,15 +392,15 @@ def submit():
    studytime = request.form.get("studytime")
    pass
 
-add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","1000-01-01 00:00:00", True,'{"location":"GSU", "Time":"12:45"}'  )
-add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","1000-01-01 00:00:00", False, '{"location":"GSU", "Time":"12:45"}' )
-add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","1000-01-01 00:00:20", True, '{"location":"GSU", "Time":"12:45"}')
+# add_user("spencer", 3,"swag","spencedawg","@gmail","hello123","mugar","2023-01-01 00:00:00", True,'{"location":"GSU", "Time":"12:45"}'  )
+# add_user("bowen",2,"rags","boatbowen",'@yahoo.com',"not a password","questrom","2023-01-01 00:00:00", False, '{"location":"GSU", "Time":"12:45"}' )
+# add_user("jared",4,"haoisdjf","aphajared","@verizon","securepassword","GSU","2023-01-01 00:00:20", True, '{"location":"GSU", "Time":"12:45"}')
 
 #'1 friend 2' , '2 friend 1', 'friend both', '1 block 2', '2 block 1', 'block both'
 #add_friend(2,4,'friend both')
 #add_friend(3,4,'1 friend 2')
 
-print(find_all_friends(4))
+# print(find_all_friends(4))
 
 if  __name__ == '__main__':
     app.run()

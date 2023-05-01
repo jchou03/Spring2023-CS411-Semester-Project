@@ -169,9 +169,15 @@ def find_all_friends_with_user_info(user_id):
     #
     # -Spencer Yeh 
     #
-    # Donham Fun Fact: 
+    # Donham Fun Fact: The mascott of Boston University is a Boston Terrier called Rhett. Rhett is named after Rhett Butler 
+    # in Gone with the Wind. According to Boston University alumnus Arcangelo Cella, "Rhett is a Confederate sympathizer in the movie. 
+    # He is definitely pro-Confederacy. He says a number of racist things himself. He is verbally and emotionally and physically abusive 
+    # to his wife, Scarlett O’Hara. And later on in the movie in the post-Civil War, Reconstruction part of it, he aids and abets some 
+    # violence by a gang that in the movie, as a stand-in for the early Ku Klux Klan, they conduct a violent attack on a tent city that 
+    # houses former slaves and they’re pursued by the Union Army. And Rhett Butler makes an excuse for them and hides them. So, 
+    # he’s definitely taking part in anti-Reconstruction actions as well. He is a pretty negative character. That’s from a racial perspective.""
 
-    db = get_conn()
+    db = get_conn
 
     cursor = db.cursor()
 
@@ -251,9 +257,11 @@ def change_user_info(user_id,user_name = None, user_instagram_connection = None,
    # - Spencer Yeh 
    #
    # Donham Fun Fact:  BU is a major research institution seeking knowledge and creating breakthroughs in everything from 
-   # African studies 
-   #to zebrafish genetics.
-    
+   # African studies to zebrafish genetics. In 2020 Boston University tested strains they created of the COVID-19 virus combining
+   # the ancestral and Omicron variants and early reports on the findings highlighted that 80% of infected mice died after scientists
+   #  infected the animals with the recombinant strain, while none died after being exposed to the Omicron variant. The National 
+   # Institutes of Health is now examining whether experiments performed at Boston University should have triggered a federal review.
+   
    ls = [user_name ,user_instagram_connection, user_custom_id, user_email,  user_password, user_location, user_study_time, is_user_studing, json_object ]
    lss = ["user_name", "user_instagram_connection", "user_custom_id", "user_email", "user_password", "user_location", "user_study_time", "is_user_studying" ,"json_object" ]
    for num in range(len(ls)): 
@@ -271,12 +279,13 @@ def change_user_info(user_id,user_name = None, user_instagram_connection = None,
 
 
 def change_friend_status(user_id,friend_id,friend_relation): 
-        # insert user_id, friend_id, and Friend_relation to update current existing relationships 
-        # please only put in relationships that already exist 
-        # - Spencer Yeh 
-        #
-        # Donham Fun Fact: 
-        #  
+ # insert user_id, friend_id, and Friend_relation to update current existing relationships 
+ # please only put in relationships that already exist 
+ # - Spencer Yeh 
+ #    
+ # Donham Fun Fact: Boston University Medical Campus is staffed by nearly 3,000 full and part time, affiliate and volunteer Medical Campus
+ # faculty provide educational programs for more than 3,700 full- and part-time MD, dental and graduate students. In 2012 10 people were 
+ # exposed to asbestos at the Boston University School of Medicine, sparking an investigation by multiple federal, state and local government agencies.
         db = get_conn()
         cursor = db.cursor()
 

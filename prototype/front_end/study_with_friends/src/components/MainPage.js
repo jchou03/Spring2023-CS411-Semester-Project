@@ -62,9 +62,14 @@ var testFriends = [
 
 // test object to hold a location
 const testLocation = {
-    address: 'Boston, MA 02215',
-    lat: 42.35085737795678,
-    lng: -71.10533494442352,
+    address: 'Mugar',
+    lat: 42.351043658427685,
+    lng: -71.10802251786406
+}
+const testLocation2= {
+    address: 'GSU',
+    lat: 42.35095643997506, 
+    lng: -71.10891837561408
 }
 
 const zoomDefault = 15;
@@ -188,7 +193,7 @@ function MainPage(props){
                         </Modal.Footer>
                     </Modal>
 
-                    <Map location={testLocation} zoomLevel={zoomDefault}/>
+                    <Map user={user} location1={testLocation} location2={testLocation2} zoomLevel={zoomDefault}/>
                 </div>
             </div>
         </div>

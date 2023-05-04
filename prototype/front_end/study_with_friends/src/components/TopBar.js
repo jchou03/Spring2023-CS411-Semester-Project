@@ -26,7 +26,7 @@ function TopBar (props) {
 
     return (
         <div id="topbar">
-            <h1>Study Finder</h1>
+            <h1>Study With Friends</h1>
             <div>
                 {/* can add a profile picture in top right later */}
                 {/* custom right side depending on if the user is signed in or not */}

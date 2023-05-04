@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import axios from 'axios'
+
 // bootstrap imports
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Modal from 'react-bootstrap/Modal'
@@ -13,20 +13,11 @@ function SignIn(props){
     // hook to keep track of the inputted username
     const [name, setName] = useState("")
 
-    // function to update the user when a user is logged in
-    const responseFacebook = async (response) => {
+    // need to add a function to update the username based on the logged in user
+    const responseFacebook = (response) => {
         console.log(response)
-        // check if a user does exist, and if it doesn't, create a new user in the database
-        var params = {'id': 2}//response.id}
-        // params.headers.add('Access-Control-Allow-Origin', '*')
-        var login_res = await axios.post('http://127.0.0.1:5000/login?id=' + 2)
-        console.log("login res is : " + login_res)
         props.setUser(response)
         props.handleClose()
-    }
-
-    if(props.show){
-        responseFacebook({'response': 'test object'})
     }
 
     return(

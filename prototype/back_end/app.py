@@ -108,9 +108,9 @@ def find_user(user_id):
     # adding users to profile 
 
     query  = ('''SELECT * FROM user_profile WHERE user_id = %s;''' % (user_id))
-    print("finding user in query")
+    
     cursor.execute(query)
-    print("cursor is " + str(cursor))
+
     ls = []
 
     for info in cursor: 
@@ -309,15 +309,8 @@ def add_user_route():
     user_data = request.get_json()
     add_user(
         user_data['user_name'],
-        user_data['user_id'],
         user_data['user_instagram_connection'],
-        user_data['user_custom_id'],
-        user_data['user_email'],
-        user_data['user_password'],
-        user_data['user_location'],
-        user_data['user_study_time'],
-        user_data['is_user_studying'],
-        user_data['json_object']
+        user_data['user_custom_id']
     )
     return jsonify({"message": "User added successfully"}), 201
 
@@ -384,16 +377,10 @@ def update_user(user_id):
     return jsonify({'status': 'success'}), 200
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login')
 def login():
-    # print(request)
-    id = request.args.get('id')
-    # print("login function reached and id is: " + str(id))
-    response = jsonify(find_user(id))
-    # print("successfully found user " + str(response))
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    print("login function completed, returning result" + str(response))
-    return response
+   username = request.form.get("username")
+   pass
 
 @app.route('/submit')
 def submit():

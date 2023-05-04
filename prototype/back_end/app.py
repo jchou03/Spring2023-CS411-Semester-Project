@@ -1,7 +1,9 @@
 from flask import Flask,request,render_template,jsonify
+from flask_cors import CORS
 import datetime
 import mysql.connector
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -298,8 +300,15 @@ def add_user_route():
     user_data = request.get_json()
     add_user(
         user_data['user_name'],
+        user_data['user_id'],
         user_data['user_instagram_connection'],
-        user_data['user_custom_id']
+        user_data['user_custom_id'],
+        user_data['user_email'],
+        user_data['user_password'],
+        user_data['user_location'],
+        user_data['user_study_time'],
+        user_data['is_user_studying'],
+        user_data['json_object']
     )
     return jsonify({"message": "User added successfully"}), 201
 
@@ -374,7 +383,7 @@ def login():
     response = jsonify(find_user(id))
     # print("successfully found user " + str(response))
     response.headers.add('Access-Control-Allow-Origin', '*')
-    # print("login function completed, returning result")
+    print("login function completed, returning result" + str(response))
     return response
 
 @app.route('/submit')

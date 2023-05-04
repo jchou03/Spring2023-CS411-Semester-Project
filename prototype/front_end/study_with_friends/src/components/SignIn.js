@@ -17,12 +17,16 @@ function SignIn(props){
     const responseFacebook = async (response) => {
         console.log(response)
         // check if a user does exist, and if it doesn't, create a new user in the database
-        var params = {'id':response.id}
-        params.headers.add('Access-Control-Allow-Origin', '*')
-        var login_res = await axios.post('http://127.0.0.1:5000/login', params)
+        var params = {'id': 2}//response.id}
+        // params.headers.add('Access-Control-Allow-Origin', '*')
+        var login_res = await axios.post('http://127.0.0.1:5000/login?id=' + 2)
         console.log("login res is : " + login_res)
         props.setUser(response)
         props.handleClose()
+    }
+
+    if(props.show){
+        responseFacebook({'response': 'test object'})
     }
 
     return(

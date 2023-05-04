@@ -14,14 +14,14 @@ function StudySession(props){
 
 function StudySessions ({ user, friends }) {
     // console.log("friends " + friends)
-    for (var i = 0; i < friends.length; i++){
-        console.log(friends[i])
-    }
+    // for (var i = 0; i < friends.length; i++){
+    //     console.log(friends[i])
+    // }
 
     return (
         (user !== null ? (friends.length !== 0 ? (friends.map((friend) => {
             if(friend[8] === 1){
-                return (<StudySession key={friend.id} name={friend[0]}  location={friend[6]} time={friend[7]}/>)
+                return (<StudySession key={friend[1]} name={friend[0]}  location={friend[6]} time={friend[7]}/>)
             }else{
                 return <></>
             }
